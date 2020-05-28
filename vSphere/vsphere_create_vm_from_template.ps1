@@ -4,24 +4,24 @@
 # Prompts for details like cluster, datastore, portgroup etc.
 
 # Variables to connect to vCenter and fetch the VM template.
-$vcenterServername = "10.105.68.21"
-$vcenterUserName = "administrator@vsphere.local"
-$vcenterPassword = "VMware123!"
-$vmTemplateName = "win2019-template"
+$vcenterServername = ""
+$vcenterUserName = ""
+$vcenterPassword = ""
+$vmTemplateName = ""
 
 # Variables used to deploy the VM.
-$vmName = "win2019-vm-1"
-$vmSpecName = "WinServerSpec"
-$organizationName = "VMware"
-$vmIpAddress = "192.168.40.100"
-$vmSubnetMask = "255.255.255.0"
-$vmDefaultGateway = "192.168.40.1"
-$vmDnsServer = "192.168.0.10"
-$vmVcpuCount = "2"
-$vmMemoryGB = "8"
-$vmAdminPassword = "VMw@re123#"
+$vmName = ""
+$vmSpecName = ""
+$organizationName = ""
+$vmIpAddress = ""
+$vmSubnetMask = ""
+$vmDefaultGateway = ""
+$vmDnsServer = ""
+$vmVcpuCount = ""
+$vmMemoryGB = ""
+$vmAdminPassword = ""
 # Check for list of time zones here: https://pubs.vmware.com/vsphere-51/index.jsp?topic=%2Fcom.vmware.powercli.cmdletref.doc%2FNew-OSCustomizationSpec.html
-$vmTimeZone = "190"
+$vmTimeZone = ""
 
 Connect-VIServer -Server $vcenterServerName -User $vcenterUsername -Password $vcenterPassword
 if ($global:DefaultVIServers.Name -contains $vcenterServerName) {
@@ -81,7 +81,7 @@ if ($global:DefaultVIServers.Name -contains $vcenterServerName) {
                 }
 
                 Write-Host "Creating OS customization spec." -ForegroundColor Green
-                $osCustomizationSpec = New-OSCustomizationSpec -AdminPassword $vmAdminPassword -Description $vmDescription -Name $vmSpecName -OSType Windows -FullName Administrator -OrgName $organizationName -NamingScheme Fixed -NamingPrefix $vmName -TimeZone $vmTimeZone -Type NonPersistent -Workgroup Workgroup -ChangeSid
+                $osCustomizationSpec = New-OSCustomizationSpec -AdminPassword $vmAdminPassword -Name $vmSpecName -OSType Windows -FullName Administrator -OrgName $organizationName -NamingScheme Fixed -NamingPrefix $vmName -TimeZone $vmTimeZone -Type NonPersistent -Workgroup Workgroup -ChangeSid
                 if ($osCustomizationSpec) {
                     Write-Host "OS customization spec created, applying Nic mapping to it and creating VM." -ForegroundColor Green
                     Get-OSCustomizationNicMapping -OSCustomizationSpec $osCustomizationSpec | Set-OSCustomizationNicMapping -IpMode UseStaticIp -IpAddress $vmIpAddress -SubnetMask $vmSubnetMask -DefaultGateway $vmDefaultGateway -Dns $vmDnsServer
@@ -89,6 +89,7 @@ if ($global:DefaultVIServers.Name -contains $vcenterServerName) {
                     if ($vmCreate) {
                         Write-Host "VM created, changing CPU and memory." -ForegroundColor Green
                         $vmCreate | Set-VM -NumCpu $vmVcpuCount -MemoryGB $vmMemoryGB -Confirm:$false
+                        Write-Host ""
                         $vmNetworkAdapters = $vmCreate | Get-NetworkAdapter
                         if ($vmNetworkAdapters) {
                             Write-Host "$($vmNetworkAdapters.Count) network adapters found on the VM." -ForegroundColor Green
@@ -125,6 +126,7 @@ if ($global:DefaultVIServers.Name -contains $vcenterServerName) {
                         } else {
                             Write-Host "No network adapters found on the VM." -ForegroundColor Yellow
                         }
+                        Write-Host ""
                         $vmPowerOn = Read-Host "Power on the VM? (y/n)"
                         if ($vmPowerOn -eq "y") {
                             Write-Host "Powering on the VM." -ForegroundColor Green
@@ -132,6 +134,7 @@ if ($global:DefaultVIServers.Name -contains $vcenterServerName) {
                         } else {
                             Write-Host "Not powering on the VM." -ForegroundColor Green
                         }
+                        Write-Host ""
                         Write-Host "Script execution completed." -ForegroundColor Green
                     } else {
                         Write-Host "Could not create VM, terminating execution." -ForegroundColor Red
