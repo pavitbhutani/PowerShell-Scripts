@@ -126,6 +126,7 @@ if ($global:DefaultVIServers.Name -contains $vcenterServerName) {
                         } else {
                             Write-Host "No network adapters found on the VM." -ForegroundColor Yellow
                         }
+
                         Write-Host ""
                         $vmPowerOn = Read-Host "Power on the VM? (y/n)"
                         if ($vmPowerOn -eq "y") {
@@ -136,6 +137,7 @@ if ($global:DefaultVIServers.Name -contains $vcenterServerName) {
                         }
                         Write-Host ""
                         Write-Host "Script execution completed." -ForegroundColor Green
+                        
                     } else {
                         Write-Host "Could not create VM, terminating execution." -ForegroundColor Red
                     }
