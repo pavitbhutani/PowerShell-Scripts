@@ -4,16 +4,16 @@
 
 
 # Script variables.
-$vcloudHost = "apac-labs-cloud.vmware.com"
-$vcloudOrg = "test"
-$vcloudUserName = "labadmin"
-$vcloudPassword = "GSSlabadmin!"
-$vcloudApiVersion = "31.0"
-$ovdcName = "test-ovdc"
-$copyAction = "COPY"
-$vappName = "pavit-test"
+$vcloudHost = ""
+$vcloudOrg = ""
+$vcloudUserName = ""
+$vcloudPassword = ""
+$vcloudApiVersion = ""
+$ovdcName = ""
+$copyAction = ""
+$vappName = ""
 # Specify this variable when choosing to copy vApp.
-$copiedVappName = "pavit-test-copy"
+$copiedVappName = ""
 
 
 # Login to vCloud Director using REST API.
