@@ -148,6 +148,7 @@ function Move-ItemsToCatalog {
 
 $vcdHeaders = Login-Vcloud -Vcloud $vcloudHost -OrgName $vcloudOrg -UserName $vcloudUserName -Password $vcloudPassword
 if ($vcdHeaders) {
+    Write-Host "Logged in to vCloud Director Org $vcloudOrg using username $vcloudUserName." -ForegroundColor Green
     Move-ItemsToCatalog -Vcloud $vcloudHost -OrgName $vcloudOrg -Headers $vcdHeaders -SourceCatalogName $sourceCatalogName -StagingCatalogName $stagingCatalogName -DestinationCatalogName $destinationCatalogName
 } else {
     Write-Host "Failed to log in to vCloud Director Org $vcloudOrg using username $vcloudUserName." -ForegroundColor Red
