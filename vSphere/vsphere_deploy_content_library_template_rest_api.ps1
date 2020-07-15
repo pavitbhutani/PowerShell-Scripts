@@ -1,5 +1,5 @@
 ﻿# Author: Pavit Bhutani.
-# Script creates virtual machine from a content library template using REST API.
+# Script creates virtual machine from a content library VM template using REST API.
 # The VM template has 1 disk in this example the size of which is being increased while deploying.
 
 # Variables to connect to vCenter and fetch the VM template.
