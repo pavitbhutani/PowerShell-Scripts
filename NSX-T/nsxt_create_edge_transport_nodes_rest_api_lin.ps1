@@ -208,7 +208,7 @@ function Create-EdgeTransportNodes {
                     try {
                         $nsxtEdgeTransportNodeStatus = Invoke-RestMethod -Uri $nsxtEdgeTransportNodeStatusUrl -Method Get -Headers $NsxtHeaders -SkipCertificateCheck
                     } catch {
-                        Write-Host "Exception: $($_.Exception.Message), edge status: $($nsxtEdgeTransportNodeStatus.status), retrying after 30 seconds." -ForegroundColor Yellow
+                        Write-Host "Exception: $($_.Exception.Message), retrying after 30 seconds." -ForegroundColor Yellow
                     }
                     Start-Sleep -Seconds 30
                     $nsxtEdgeTransportNodeCheckTime = Get-Date
