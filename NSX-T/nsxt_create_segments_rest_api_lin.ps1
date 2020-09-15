@@ -34,6 +34,7 @@ function Login-NSXManager {
         return $nsxtHeaders
     }
 }
+
 function Create-NSXtSegments {
     Param
     (
