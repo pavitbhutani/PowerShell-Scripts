@@ -63,7 +63,7 @@ function Create-EdgeTransportNodes {
         [Parameter(Mandatory=$true)]
         [string[]]$EdgeHostNames,
         [Parameter(Mandatory=$true)]
-        [string[]]$EdgePassword,
+        [string]$EdgePassword,
         [Parameter(Mandatory=$true)]
         [string]$EdgeManagementNetworkId,
         [Parameter(Mandatory=$true)]
