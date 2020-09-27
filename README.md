@@ -1,2 +1,2 @@
 # PowerCLI-Scripts
-A collection of PowerCLI scripts.
+A collection of PowerShell scripts.
