@@ -66,8 +66,7 @@ function Get-OrgUsers {
             $usersOutput += $usersInput
         }
         $p++
-    }
-    while ($p -le $usersPageCount)
+    } while ($p -le $usersPageCount)
     Write-Host "Org users fetched." -ForegroundColor Green
     return $usersOutput
 }
