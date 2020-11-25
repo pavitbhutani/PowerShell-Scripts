@@ -43,7 +43,7 @@ function Login-Vcloud {
     }
 }
 
-# Copy content from source to destination catalog.
+# Renew vApp lease.
 function Renew-VappLease {
     Param
     (   [Parameter(Mandatory=$true)]
